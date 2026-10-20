@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>game-xray-10-20-2026</title><style>body,html,canvas{margin:0;height:100%;overflow:hidden;background:#0b0f17}</style></head>
+<body><canvas id='c'></canvas><script src='https://unpkg.com/three@0.160.0/build/three.min.js'></script>
+<script>const c=document.getElementById('c');const r=new THREE.WebGLRenderer({canvas:c,antialias:true});
+const s=()=>{const w=innerWidth,h=innerHeight;r.setSize(w,h)};addEventListener('resize',s);s();
+const scene=new THREE.Scene();const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,100);cam.position.z=3;
+const geo=new THREE.BoxGeometry(1,1,1);const mat=new THREE.MeshStandardMaterial({color:0x44aa88});const cube=new THREE.Mesh(geo,mat);scene.add(cube);
+scene.add(new THREE.AmbientLight(0x8899aa,1));const dl=new THREE.DirectionalLight(0xffffff,1);dl.position.set(5,5,5);scene.add(dl);
+let t=0;function loop(){t+=0.01; cube.rotation.x=t; cube.rotation.y=t*0.7; r.render(scene,cam); requestAnimationFrame(loop)} loop();
+addEventListener('mousemove',e=>{cube.material.color.setHSL((e.clientX/innerWidth),0.6,0.5)});
+</script></body></html>
